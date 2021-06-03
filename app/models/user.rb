@@ -7,6 +7,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :jwt_authenticatable, jwt_revocation_strategy: JwtDenylist
 
+  # Associations
+  has_one :cart
+         
+  # Login validations
   attr_accessor :login
 
   validate :validate_username
