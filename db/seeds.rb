@@ -7,8 +7,8 @@ User.create(email: "hoppie@doppie.com", password: "123456", first_name: "Hoppie"
 Category.create(name: 'Music')
 Category.create(name: 'Techhology')
 
-Product.create(name: 'Guitar', description: 'Really nice guitar', price: 80, total_availability: 10)
-Product.create(name: 'Synth', description: '80s Synthesizer', price: 120, total_availability: 8)
+Product.create(name: 'Guitar', description: 'Really nice guitar', price: 80, availability: 10)
+Product.create(name: 'Synth', description: '80s Synthesizer', price: 120, availability: 8)
 
 CategoryProduct.create(category_id: 1, product_id: 1)
 CategoryProduct.create(category_id: 1, product_id: 2)
