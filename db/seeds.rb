@@ -4,6 +4,8 @@
 User.create(email: "nappa@dappa.com", password: "123456", first_name: "Nappa", last_name: "Frey", username: "Ghost Nappa", avatar_url: "none", role_id: 1)
 User.create(email: "hoppie@doppie.com", password: "123456", first_name: "Hoppie", last_name: "Hobber", username: "Hoppie Doppie", avatar_url: "no profile picture yet", role_id: 3)
 
+Address.create(user_id: 1, full_name: "Nappa Kikaki Frey", mobile_number: "0867534219", country: "United States", state: "California", city_name: "Los Angeles", city_code: "90210", street_address: "42 Hilton ave")
+
 Category.create(name: 'Music')
 Category.create(name: 'Techhology')
 
