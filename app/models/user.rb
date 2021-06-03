@@ -9,6 +9,7 @@ class User < ApplicationRecord
 
   # Associations
   has_one :cart
+  has_many :orders
          
   # Login validations
   attr_accessor :login
