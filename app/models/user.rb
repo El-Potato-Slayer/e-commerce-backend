@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_one :cart
   has_many :orders
   has_many :addresses
+  has_many :reviews
          
   # Login validations
   attr_accessor :login
