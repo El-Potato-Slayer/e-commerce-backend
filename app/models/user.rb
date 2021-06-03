@@ -10,6 +10,7 @@ class User < ApplicationRecord
   # Associations
   has_one :cart
   has_many :orders
+  has_many :addresses
          
   # Login validations
   attr_accessor :login

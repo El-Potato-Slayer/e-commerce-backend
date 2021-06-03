@@ -6,9 +6,9 @@ class CreateAddresses < ActiveRecord::Migration[6.1]
       t.string :mobile_number
       t.string :country
       t.string :state
-      t.string :city_code
       t.string :city_name
-      t.address :street
+      t.string :city_code
+      t.string :street_address
 
       t.timestamps
     end
