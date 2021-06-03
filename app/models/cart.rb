@@ -3,7 +3,7 @@ class Cart < ApplicationRecord
   has_many :products, class_name: 'CartProduct'
 
   def create_order() 
-    order = Order.create(user_id: user.id, has_shipped: false)
+    order = Order.create(user_id: user.id, has_shipped: false, is_complete: false)
 
     products.map do |cart_product|
       OrderProduct.create(order_id: order.id, product_id: cart_product.product.id, quantity: cart_product.quantity)
