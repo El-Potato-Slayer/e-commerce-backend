@@ -12,6 +12,7 @@ Category.create(name: 'Techhology')
 Product.create(name: 'Guitar', description: 'Really nice guitar', price: 80, availability: 10)
 Product.create(name: 'Synth', description: '80s Synthesizer', price: 120, availability: 8)
 
+
 CategoryProduct.create(category_id: 1, product_id: 1)
 CategoryProduct.create(category_id: 1, product_id: 2)
 
@@ -21,3 +22,7 @@ Cart.create(user_id: 2)
 CartProduct.create(cart_id: 1, product_id: 1, quantity: 4)
 CartProduct.create(cart_id: 1, product_id: 2, quantity: 7)
 CartProduct.create(cart_id: 2, product_id: 2, quantity: 11)
+
+Cart.first.create_order
+
+Review.create(user_id:1, product_id: 1, rating: 4, comment: "It's a sick guitar, but it smelled like rosewood instead of yellowfin tuna")
