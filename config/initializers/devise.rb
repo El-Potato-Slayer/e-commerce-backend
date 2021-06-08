@@ -9,9 +9,9 @@
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
-  config.jwt do |jwt|
-    jwt.secret = Rails.application.credentials.devise[:jwt_secret_key]
-  end
+  # config.jwt do |jwt|
+  #   jwt.secret = Rails.application.credentials.devise[:jwt_secret_key]
+  # end
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
@@ -284,7 +284,11 @@ Devise.setup do |config|
   #   manager.intercept_401 = false
   #   manager.default_strategies(scope: :user).unshift :some_external_strategy
   # end
-
+  config.warden do |manager|
+    # manager.intercept_401 = false
+    manager.strategies.add :jwt, Devise::Strategies::JWT
+    manager.default_strategies(scope: :user).unshift :jwt
+  end
   # ==> Mountable engine configurations
   # When using Devise inside an engine, let's call it `MyEngine`, and this engine
   # is mountable, there are some extra configurations to be taken into account.
@@ -311,4 +315,23 @@ Devise.setup do |config|
   # When set to false, does not sign a user in automatically after their password is
   # changed. Defaults to true, so a user is signed in automatically after changing a password.
   # config.sign_in_after_change_password = true
+end
+
+module Devise
+  module Strategies
+    class JWT < Base
+      def valid?
+        request.headers['Authorization'].present?
+      end
+      def authenticate!
+        token = request.headers.fetch('Authorization', '').split(' ').last
+        payload = JsonWebToken.decode(token)
+        success! User.find(payload['sub'])
+      rescue ::JWT::ExpiredSignature
+        fail! 'Auth token has expired'
+      rescue ::JWT::DecodeError
+        fail! 'Auth token is invalid'
+      end
+    end
+  end
 end

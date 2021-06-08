@@ -58,12 +58,6 @@ ActiveRecord::Schema.define(version: 2021_06_03_020824) do
     t.index ["product_id"], name: "index_category_products_on_product_id"
   end
 
-  create_table "jwt_denylist", force: :cascade do |t|
-    t.string "jti", null: false
-    t.datetime "exp", null: false
-    t.index ["jti"], name: "index_jwt_denylist_on_jti"
-  end
-
   create_table "order_products", force: :cascade do |t|
     t.integer "order_id", null: false
     t.integer "product_id", null: false
